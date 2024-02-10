@@ -63,18 +63,47 @@ const questions = [
 const quiz = document.querySelector("#quiz")
 const template = document.querySelector("template")
 
+const correctAnswersSet = new Set()
+const totalQuestions = questions.length
+
+const updateTotalHits = () => {
+  const totalHits = (document.querySelector(
+    "#hits span"
+  ).textContent = `${correctAnswersSet.size} de ${totalQuestions}`)
+
+  return totalHits
+}
+
 for (const item of questions) {
-  const quizItemClone = template.content.cloneNode(true)
-  quizItemClone.querySelector("h3").textContent = item.question
+  const { answers, correctAnswer, question } = item
 
-  for (const answer of item.answers) {
-    const dtClone = quizItemClone.querySelector("dl dt").cloneNode(true)
-    dtClone.querySelector("span").textContent = answer
+  const quizItem = template.content.cloneNode(true)
+  quizItem.querySelector("h3").textContent = question
 
-    quizItemClone.querySelector("dl").appendChild(dtClone)
+  for (const answer of answers) {
+    const dt = quizItem.querySelector("dl dt").cloneNode(true)
+    const dtInput = dt.querySelector("input")
+
+    dt.querySelector("span").textContent = answer
+    dtInput.setAttribute("name", "question-" + questions.indexOf(item))
+    dtInput.value = answers.indexOf(answer)
+
+    dtInput.onchange = (event) => {
+      correctAnswersSet.delete(item)
+
+      const isCorrectAnswer = event.target.value == correctAnswer
+
+      if (isCorrectAnswer) {
+        correctAnswersSet.add(item)
+      }
+
+      updateTotalHits()
+    }
+
+    quizItem.querySelector("dl").appendChild(dt)
   }
 
-  quizItemClone.querySelector("dl dt").remove()
+  quizItem.querySelector("dl dt").remove()
 
-  quiz.appendChild(quizItemClone)
+  quiz.appendChild(quizItem)
 }
