@@ -22,7 +22,7 @@ Application developed at Rocketseat's NLW Expert in the HTML+CSS+JS track.
   <img alt="Preview of the developed project." src=".github/preview.png" width="80%">
 </p>
 
-## 🚀 Tecnologias
+## 🚀 Technologies
 
 This project was developed using the following technologies:
 
@@ -30,10 +30,10 @@ This project was developed using the following technologies:
 - CSS
 - JavaScript
 
-## 💻 Projeto
+## 💻 Project
 
-Nesse projeto você vai desenvolver um quiz pra testar os seus conhecimentos técnicos e ter um retorno sobre a quantidade de questões que você acertou.
+In this project you will develop a quiz to test your technical knowledge and get feedback on the number of questions you got right.
 
-## 📝 Licença
+## 📝 Licence
 
-Esse projeto está sob a licença MIT.
+This project is under the MIT license.
